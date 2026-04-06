@@ -30,6 +30,8 @@ source .venv/Scripts/activate
 streamlit run frontend.py --server.port 8501
 ```
 
+The application is accessible on your local network at: **http://192.168.0.106:8501/** (or `http://localhost:8501/` on the host machine).
+
 3. Or run the API directly:
 
 ```bash
