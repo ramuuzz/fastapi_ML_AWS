@@ -35,28 +35,3 @@ streamlit run frontend.py --server.port 8501
 ```bash
 python app.py
 ```
-
-## Git / push safety notes
-- This repo includes a `.gitignore` that excludes virtualenvs, logs, and model artifacts.
-- Do not commit secrets or `.env` files. If a secret is accidentally committed, rotate it immediately and remove it from history (use `git filter-repo` or BFG).
-- If a model file (e.g. `model/model.pkl`) is large or sensitive, keep it out of git and store in an artifact store (S3, DVC, or similar).
-
-Quick commands to add & push safely:
-
-```bash
-# create a branch
-git checkout -b feature/prepare-repo
-
-# stage only intended files, inspect staged diff
-git add -p
-git diff --staged
-git commit -m "chore: add .gitignore and README"
-git push -u origin feature/prepare-repo
-```
-
-## Tests & linting
-- Run tests if present: `pytest -q`
-- Lint with `flake8` / `mypy` where applicable.
-
-## License
-Include your license here.
