@@ -3,7 +3,7 @@ import requests
 
 from model import predict
 
-API_URL = "http://16.171.238.145:8000/predict"
+API_URL = "https://insuarance-latest.onrender.com/predict"
 
 st.title("Insurance Premium Category Predictor")
 st.markdown("Enter your details below:")
