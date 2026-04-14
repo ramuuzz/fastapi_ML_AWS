@@ -1,39 +1,72 @@
-# Insurance Prediction Premium
+# Insurance Premium Prediction
 
-Small Streamlit + prediction service for insurance premium estimation.
+A machine learning application that predicts insurance premium categories based on user inputs.
+Built with a **FastAPI** backend and a **Streamlit** frontend.
+
+## 🚀 Live Deployments
+
+| Service | URL |
+|---|---|
+| 🔵 **API (Render)** | https://insuarance-latest.onrender.com |
+| 🟢 **Frontend (Streamlit Cloud)** | https://fastapimlaws-zvuhezwd8tbcu4y6hfxhtr.streamlit.app/ |
 
 ## What this repo contains
-- `app.py` — backend API (prediction logic)
-- `frontend.py` — Streamlit UI
-- `model/` — saved model artifact (ignored by .gitignore)
+
+- `app.py` — FastAPI backend (prediction logic)
+- `frontend.py` — Streamlit UI (calls the API)
+- `model/` — saved model artifact (`.pkl` file)
 - `config/`, `schema/` — helper modules and data schemas
-
-## Requirements
-- Python 3.8+
-- Install dependencies:
-
-```bash
-python -m pip install -r requirements.txt
-```
+- `requirements.txt` — frontend dependencies (Streamlit Cloud)
+- `requirements_backend.txt` — backend dependencies (Docker/Render)
+- `Dockerfile` — containerises the FastAPI backend
 
 ## Run locally
 
-1. Activate your virtualenv (example):
+### Prerequisites
+
+- Python 3.12+
+- Create and activate a virtual environment:
 
 ```bash
-source .venv/Scripts/activate
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
 ```
 
-2. Run the Streamlit UI:
+### 1. Run the FastAPI backend
 
 ```bash
-streamlit run frontend.py --server.port 8501
+pip install -r requirements_backend.txt
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-The application is accessible on your local network at: **http://192.168.0.106:8501/** (or `http://localhost:8501/` on the host machine).
+API will be available at: **http://localhost:8000**
+Interactive docs at: **http://localhost:8000/docs**
 
-3. Or run the API directly:
+### 2. Run the Streamlit frontend
+
+In a **separate terminal**, update `API_URL` in `frontend.py` to point to your local backend:
+
+```python
+API_URL = "http://localhost:8000/predict"
+```
+
+Then run:
 
 ```bash
-python app.py
+pip install -r requirements.txt
+streamlit run frontend.py
+```
+
+Frontend will be available at: **http://localhost:8501**
+
+### 3. Run with Docker (backend only)
+
+```bash
+docker build -t insuarance .
+docker run -p 8000:8000 insuarance
 ```
