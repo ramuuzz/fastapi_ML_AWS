@@ -7,6 +7,7 @@ Built with a **FastAPI** backend and a **Streamlit** frontend.
 
 | Service | URL |
 |---|---|
+| 🟠 **API (AWS EC2)** | http://16.171.238.145:8000 |
 | 🔵 **API (Render)** | https://insuarance-latest.onrender.com |
 | 🟢 **Frontend (Streamlit Cloud)** | https://fastapimlaws-zvuhezwd8tbcu4y6hfxhtr.streamlit.app/ |
 
